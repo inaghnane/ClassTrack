@@ -1,10 +1,9 @@
-📌 QR-Based Absenteeism Management System
-
+📌 ClassTrack – QR-Based Absenteeism Management System
 🧠 Project Overview
 
-This project is a distributed absenteeism management system designed for universities. It allows students to confirm their attendance by scanning a QR code displayed by the professor during a session.
+ClassTrack is a distributed absenteeism management system designed for universities. It allows students to confirm their attendance by scanning a QR code displayed by the professor during a session.
 
-The main objective of this project is to apply and demonstrate gRPC architecture in a real-world academic use case, as required in the Distributed Systems module. The professor explicitly required the use of gRPC to ensure efficient, scalable, and well-structured communication between services.
+The main objective of this project is to apply and demonstrate the gRPC architecture in a real academic use case, as required in the Distributed Systems module. The use of gRPC was a key requirement imposed by the professor to ensure efficient, scalable, and well-structured communication between distributed services.
 
 🎯 Objectives
 
@@ -14,17 +13,16 @@ Prevent cheating and false attendance
 
 Simplify attendance management for professors
 
-Provide real-time, reliable communication using gRPC
+Provide real-time and reliable communication using gRPC
 
-Apply concepts of distributed systems in practice
+Apply distributed systems concepts in practice
 
 🛠️ Technologies Used
-
 Front-End
 
 Next.js (React framework)
 
-Role-based interfaces (Admin / Professor / Student)
+Role-based interfaces (Administrator / Professor / Student)
 
 Back-End
 
@@ -42,13 +40,13 @@ gRPC (Google Remote Procedure Call)
 
 🧩 Why gRPC?
 
-The core goal of this project is to implement a distributed system using gRPC instead of traditional REST APIs.
+The core goal of ClassTrack is to implement a distributed system using gRPC instead of traditional REST APIs.
 
-gRPC allows:
+gRPC provides:
 
-🔹 High-performance communication (binary data)
+🔹 High-performance communication using binary data
 
-🔹 Strongly typed contracts using .proto files
+🔹 Strongly typed service contracts via .proto files
 
 🔹 Clear separation between services
 
@@ -63,7 +61,6 @@ The server handles business logic and database access
 All interactions (authentication, sessions, attendance, QR validation) are exposed as gRPC services
 
 🏗️ System Architecture
-
 [ Next.js Client ]
         │
         │ gRPC calls
@@ -74,10 +71,10 @@ All interactions (authentication, sessions, attendance, QR validation) are expos
         ▼
 [ MariaDB Database ]
 
-Each role (Admin, Professor, Student) communicates with the backend via defined gRPC services.
+
+Each role (Administrator, Professor, Student) communicates with the backend through defined gRPC services.
 
 👥 User Roles & Features
-
 👨‍💼 Administrator
 
 Manage professors
@@ -86,7 +83,7 @@ Manage students
 
 Create and manage sessions
 
-Global system supervision
+Oversee the entire system
 
 👨‍🏫 Professor
 
@@ -100,41 +97,40 @@ Mark attendance:
 
 Automatically (via QR scan)
 
-Manually (if needed)
+Manually if needed
 
 View attendance reports
 
 🎓 Student
 
-Scan QR code to confirm presence
+Scan QR codes to confirm presence
 
 View attendance and absence history
 
 Join sessions securely
 
 🔄 Communication Flow (How It Works)
-
 1️⃣ Session Creation
 
-The professor creates a session via the interface
+The professor creates a session using the interface
 
-Backend stores the session in MariaDB
+The backend stores session data in MariaDB
 
 2️⃣ QR Code Generation
 
 The professor requests a QR code
 
-Backend generates a unique session token
+The backend generates a unique session token
 
-Token is encoded into a QR code and displayed
+The token is encoded into a QR code and displayed
 
 3️⃣ Attendance Validation
 
-Student scans the QR code
+The student scans the QR code
 
 The client sends the token via gRPC
 
-Backend verifies:
+The backend verifies:
 
 Session validity
 
@@ -146,7 +142,7 @@ Attendance is recorded in the database
 
 4️⃣ Consultation
 
-Students and professors can consult attendance data
+Students and professors consult attendance data
 
 All data is retrieved through gRPC services
 
@@ -161,7 +157,6 @@ Student authentication before validation
 Server-side verification
 
 📂 Project Structure (Simplified)
-
 /frontend
   └── Next.js application
 
@@ -177,7 +172,8 @@ Server-side verification
 
 📚 Academic Context
 
-This project was developed as part of the Distributed Systems module. The main pedagogical goal was to:
+ClassTrack was developed as part of the Distributed Systems module.
+The main pedagogical objectives were to:
 
 Understand service-oriented architectures
 
@@ -187,12 +183,12 @@ Design a scalable and efficient distributed application
 
 ✅ Conclusion
 
-This QR-based absenteeism system successfully combines:
+ClassTrack successfully combines:
 
 Modern web technologies
 
 A real academic use case
 
-A robust gRPC distributed architecture
+A robust gRPC-based distributed architecture
 
-It demonstrates how gRPC can be used effectively beyond microservices, in educational platforms requiring speed, reliability, and structure.
+The project demonstrates how gRPC can be effectively used beyond microservices, particularly in educational platforms that require speed, reliability, and structured communication.
