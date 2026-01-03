@@ -1,194 +1,173 @@
-📌 ClassTrack – QR-Based Absenteeism Management System
-🧠 Project Overview
+# 📌 ClassTrack – QR-Based Absenteeism Management System
 
-ClassTrack is a distributed absenteeism management system designed for universities. It allows students to confirm their attendance by scanning a QR code displayed by the professor during a session.
+## 🧠 Project Overview
+**ClassTrack** is a distributed absenteeism management system designed for universities.  
+It allows students to confirm their attendance by scanning a **QR code** displayed by the professor during a session.
 
-The main objective of this project is to apply and demonstrate the gRPC architecture in a real academic use case, as required in the Distributed Systems module. The use of gRPC was a key requirement imposed by the professor to ensure efficient, scalable, and well-structured communication between distributed services.
+The main objective of this project is to **apply and demonstrate the gRPC architecture** in a real academic use case, as required in the **Distributed Systems** module.  
+The use of **gRPC** was a core requirement to ensure efficient, scalable, and well-structured communication between distributed services.
 
-🎯 Objectives
+---
 
-Eliminate manual attendance sheets
+## 🎯 Objectives
+- Eliminate manual attendance sheets  
+- Prevent cheating and false attendance  
+- Simplify attendance management for professors  
+- Provide real-time and reliable communication using **gRPC**  
+- Apply distributed systems concepts in practice  
 
-Prevent cheating and false attendance
+---
 
-Simplify attendance management for professors
+## 🛠️ Technologies Used
 
-Provide real-time and reliable communication using gRPC
+### Front-End
+- **Next.js** (React framework)
+- Role-based interfaces (Administrator / Professor / Student)
 
-Apply distributed systems concepts in practice
+### Back-End
+- **Python** (gRPC server)
+- **Protocol Buffers (Protobuf)** for service definitions
 
-🛠️ Technologies Used
-Front-End
+### Database
+- **MariaDB**
 
-Next.js (React framework)
+### Architecture
+- **gRPC (Google Remote Procedure Call)**
 
-Role-based interfaces (Administrator / Professor / Student)
+---
 
-Back-End
-
-Python (gRPC server)
-
-Protocol Buffers (Protobuf) for service definitions
-
-Database
-
-MariaDB
-
-Architecture
-
-gRPC (Google Remote Procedure Call)
-
-🧩 Why gRPC?
-
-The core goal of ClassTrack is to implement a distributed system using gRPC instead of traditional REST APIs.
+## 🧩 Why gRPC?
+The core goal of **ClassTrack** is to implement a **distributed system** using **gRPC** instead of traditional REST APIs.
 
 gRPC provides:
-
-🔹 High-performance communication using binary data
-
-🔹 Strongly typed service contracts via .proto files
-
-🔹 Clear separation between services
-
-🔹 Easy scalability and service-to-service communication
+- High-performance communication using binary data  
+- Strongly typed service contracts via `.proto` files  
+- Clear separation between services  
+- Easy scalability and service-to-service communication  
 
 In this system:
+- The **Next.js client** communicates with the **Python gRPC server**
+- The server handles business logic and database access
+- All interactions (authentication, sessions, attendance, QR validation) are exposed as **gRPC services**
 
-The Next.js client communicates with the Python gRPC server
+---
 
-The server handles business logic and database access
+## 🏗️ System Architecture
 
-All interactions (authentication, sessions, attendance, QR validation) are exposed as gRPC services
-
-🏗️ System Architecture
 [ Next.js Client ]
-        │
-        │ gRPC calls
-        ▼
+│
+│ gRPC calls
+▼
 [ Python gRPC Server ]
-        │
-        │ SQL Queries
-        ▼
+│
+│ SQL Queries
+▼
 [ MariaDB Database ]
 
+yaml
+Copier le code
 
-Each role (Administrator, Professor, Student) communicates with the backend through defined gRPC services.
+Each role (Administrator, Professor, Student) communicates with the backend through defined **gRPC services**.
 
-👥 User Roles & Features
-👨‍💼 Administrator
+---
 
-Manage professors
+## 👥 User Roles & Features
 
-Manage students
+### 👨‍💼 Administrator
+- Manage professors  
+- Manage students  
+- Create and manage sessions  
+- System supervision  
 
-Create and manage sessions
+### 👨‍🏫 Professor
+- Create and manage students  
+- Create sessions  
+- Generate QR codes for sessions  
+- Mark attendance:
+  - Automatically (via QR scan)
+  - Manually if needed  
+- View attendance reports  
 
-Oversee the entire system
+### 🎓 Student
+- Scan QR codes to confirm presence  
+- View attendance and absence history  
+- Join sessions securely  
 
-👨‍🏫 Professor
+---
 
-Create and manage students
+## 🔄 Communication Flow
 
-Create sessions
+### 1. Session Creation
+- The professor creates a session via the interface  
+- The backend stores the session in MariaDB  
 
-Generate QR codes for sessions
+### 2. QR Code Generation
+- The professor requests a QR code  
+- The backend generates a **unique session token**  
+- The token is encoded into a QR code and displayed  
 
-Mark attendance:
+### 3. Attendance Validation
+- The student scans the QR code  
+- The client sends the token via gRPC  
+- The backend verifies:
+  - Session validity  
+  - Student identity  
+  - Time constraints  
+- Attendance is recorded in the database  
 
-Automatically (via QR scan)
+### 4. Consultation
+- Students and professors consult attendance data  
+- Data is retrieved through gRPC services  
 
-Manually if needed
+---
 
-View attendance reports
+## 🔐 Security & Anti-Cheating Measures
+- Unique QR codes per session  
+- Time-limited session tokens  
+- Student authentication before validation  
+- Server-side verification  
 
-🎓 Student
+---
 
-Scan QR codes to confirm presence
+## 📂 Project Structure
 
-View attendance and absence history
-
-Join sessions securely
-
-🔄 Communication Flow (How It Works)
-1️⃣ Session Creation
-
-The professor creates a session using the interface
-
-The backend stores session data in MariaDB
-
-2️⃣ QR Code Generation
-
-The professor requests a QR code
-
-The backend generates a unique session token
-
-The token is encoded into a QR code and displayed
-
-3️⃣ Attendance Validation
-
-The student scans the QR code
-
-The client sends the token via gRPC
-
-The backend verifies:
-
-Session validity
-
-Student identity
-
-Time constraints
-
-Attendance is recorded in the database
-
-4️⃣ Consultation
-
-Students and professors consult attendance data
-
-All data is retrieved through gRPC services
-
-🔐 Security & Anti-Cheating Measures
-
-Unique QR codes per session
-
-Time-limited session tokens
-
-Student authentication before validation
-
-Server-side verification
-
-📂 Project Structure (Simplified)
 /frontend
-  └── Next.js application
+└── Next.js application
 
 /backend
-  ├── grpc_server.py
-  ├── services/
-  ├── proto/
-  │     └── attendance.proto
-  └── database/
+├── grpc_server.py
+├── services/
+├── proto/
+│ └── attendance.proto
+└── database/
 
 /database
-  └── MariaDB schema
+└── MariaDB schema
 
-📚 Academic Context
+yaml
+Copier le code
 
-ClassTrack was developed as part of the Distributed Systems module.
-The main pedagogical objectives were to:
+---
 
-Understand service-oriented architectures
+## 📚 Academic Context
+This project was developed as part of the **Distributed Systems** module.  
+Its main pedagogical goals were to:
+- Understand service-oriented architectures  
+- Implement **gRPC-based communication**  
+- Design a scalable distributed application  
 
-Implement gRPC-based communication
+---
 
-Design a scalable and efficient distributed application
+## ✅ Conclusion
+**ClassTrack** demonstrates how **gRPC** can be effectively used in an academic system requiring speed, reliability, and structured communication.  
+It combines modern web technologies with a real-world university use case.
 
-✅ Conclusion
+---
 
-ClassTrack successfully combines:
+## 👨‍🏫 Supervision
+Supervised by **Mr. Youssef El Habouz**
 
-Modern web technologies
+---
 
-A real academic use case
-
-A robust gRPC-based distributed architecture
-
-The project demonstrates how gRPC can be effectively used beyond microservices, particularly in educational platforms that require speed, reliability, and structured communication.
+## 🔗 GitHub Repository
+https://github.com/inaghnane/ClassTrack
